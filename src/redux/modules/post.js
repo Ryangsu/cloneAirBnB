@@ -19,12 +19,13 @@ const addImage = createAction(ADD_IMAGE, (imgurl)=>({imgurl}))
 const getComment = createAction(GET_COMMENT, (comment_list)=>(comment_list))
 const addComment = createAction(ADD_COMMENT, (comment)=>(comment))
 
+const addImage = createAction(ADD_IMAGE, (imgurl)=>({imgurl}))
+
 
 const initialState = {
     list: [],
     imgurl:[] 
 }
-
 
 const addPostDB = (home,category, address, image_url,introduce, price)=>{
   // console.log(home, address, introduce, price,category,image_url)
@@ -60,9 +61,14 @@ const addPostDB = (home,category, address, image_url,introduce, price)=>{
   }
 }
 
-const addCommentDB = (home_id, comment)=>{
-  console.log(home_id, comment)
+const addCommentDB = (home_id, comment, user_nick)=>{
+  console.log(home_id, comment, user_nick)
   return function(dispatch, getState, { history }){
+    const commentInfo = {
+      user_nick : user_nick,
+      comment : comment
+    }
+
     axios
       .post(`http://54.180.81.174:3000/api/comment/save/write/${home_id}`, {
         comment : comment,
@@ -186,8 +192,9 @@ const actionCreators = {
     addPostDB,
     addPost,
     upLoadDB,
+    getCommentDB,
     addCommentDB,
-    addPost
+    
   }
 
   export { actionCreators }
