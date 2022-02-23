@@ -13,7 +13,7 @@ const GET_COMMENT = "GET_COMMENT"
 const getPost = createAction(GET_POST, (postList) => ({postList}))
 //postDetail 은 내가 원하는 명으로 저장 
 const getPostDetail = createAction(GET_POSTDETAIL, (postDetail) => ({postDetail}))
-const addPost = createAction(ADD_POST, (post)=>({post}))
+const addPost = createAction(ADD_POST, (postList)=>({postList}))
 
 const addImage = createAction(ADD_IMAGE, (imgurl)=>({imgurl}))
 const getComment = createAction(GET_COMMENT, (comment_list)=>(comment_list))
@@ -26,24 +26,24 @@ const initialState = {
 }
 
 
-const addPostDB = (home, address, introduce, price,category,image_url)=>{
+const addPostDB = (home,category, address, image_url,introduce, price)=>{
   // console.log(home, address, introduce, price,category,image_url)
   return function(dispatch, getState, { history }){
     const _postList ={
       home_name:home,
-      category:address,
-      address:introduce,
+      category:category,
+      address:address,
       image_url:image_url,
-      introduce:category,
+      introduce:introduce,
       price:price
     }
     let postList ={..._postList}
     axios.post('http://54.180.81.174:3000/api/hosting',
       { home_name:home,
-        category:address,
-        address:introduce,
+        category:category,
+        address:address,
         image_url:image_url,
-        introduce:category,
+        introduce:introduce,
         price:price},
         {headers: {
           Authorization: `Bearer ${localStorage.getItem("is_login")}`,
@@ -56,7 +56,9 @@ const addPostDB = (home, address, introduce, price,category,image_url)=>{
         history.push('/')
       })
       .catch((error)=>{
-        console.log(error)})}}
+        console.log(error)})
+  }
+}
 
 const addCommentDB = (home_id, comment)=>{
   console.log(home_id, comment)

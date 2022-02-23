@@ -106,7 +106,7 @@ const Write =()=>{
                               </Select>
                             </div>                            
                         </div>
-                        <Button onClick={()=>{dispatch(postActions.addPostDB(home, address, introduce, price,category,image_url))}}>숙소 호스팅 완료</Button>
+                        <Button onClick={()=>{dispatch(postActions.addPostDB(home,category, address, image_url,introduce, price))}}>숙소 호스팅 완료</Button>
                     </Wrap2>
                 </Wrap>
         </React.Fragment>
