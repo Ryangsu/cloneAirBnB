@@ -27,6 +27,15 @@ https://github.com/Ryangsu/cloneAirBnB
 ------------------
 - React
 - node.js
+- express
+- mongodb
+- mongoose- 
+- joi
+- JWT
+- CORS
+- multer
+- s3
+- aws(ec2)
 
 
 <br/>
